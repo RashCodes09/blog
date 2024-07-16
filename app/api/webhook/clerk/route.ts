@@ -71,6 +71,8 @@ export async function POST(req: Request) {
       image: image_url,
     };
 
+    console.log(user);
+
     const newUser = await myadminModel.create(user);
 
     if (newUser) {
