@@ -11,14 +11,14 @@ export interface iAdmin {
 }
 export interface iAdminData extends iAdmin, Document {}
 
-// export interface iClient {
-//   name: string;
-//   email: string;
-//   password: string;
-//   role: string;
-//   image: string;
-// }
-// export interface iClientData extends iClient, Document {}
+export interface iClient {
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  image: string;
+}
+export interface iClientData extends iClient, Document {}
 
 export interface iBlog {
   coverimage: string;
