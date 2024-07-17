@@ -7,25 +7,29 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { currentUser } from "@clerk/nextjs/server";
 
 import Image from "next/image";
 import React from "react";
 import { MdAdd, MdComment, MdEdit } from "react-icons/md";
 
 const page = async () => {
-  //blog-admin-rho-swart.vercel.app/
-  const url = "https://blog-psi-mauve-88.vercel.app/api/admin";
+  const user = await currentUser();
+  const userId = user?.publicMetadata.userId;
+  // blog-admin-rho-swart.vercel.app/
+  // const url = "https://blog-psi-mauve-88.vercel.app/api/admin";
+  const url = `http://localhost:3000/api/admin/${userId}`;
 
   console.log(url);
 
-  const res = await fetch(url, { cache: "no-cache" });
+  const res = await fetch(url, { method: "GET", cache: "no-cache" });
   const data = await res.json();
   console.log(data);
 
   return (
     <div>
       <h1 className="font-semibold mx-3 text-[18px] text-gray-500 md:mx-10 my-2">
-        Welcome Back Gomenti!
+        Welcome Back {data?.data?.name}!
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2">
         <Card className="col-span-1 m-3 md:m-10">
